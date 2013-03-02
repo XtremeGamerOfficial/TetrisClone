@@ -1,0 +1,31 @@
+Java Graphics
+Difficulty:medium hard
+deadline:6 March 2013
+
+Hint:
+-Use the java language
+-Use the gui
+-Use the timer
+
+Make a tetris game with these requirements:
+-Board size=15 X 10
+-Make the minimum of 4 shape(I,J,L,T):
+	-use the keypress to move the shape
+	-use the space on keyboard to rotate the shape clockwise
+	-when the player pressed up,the shape will instantly going down
+	-When 1 line are full of the shape,that shape will missing and the next shape will go down
+	
+Score:
+-= 3/0 =-
+Board can move left and right according keyboard press
+-= 5/3/0 =-
+The shape will fall down instantly when pressed up and can be stacked if collision with the next shape
+-= 5/3/0 =-
+The shape can be rotated clockwise when the space key are pressed
+-= 9/6/3/0 =-
+When 1 line are full of the shape,that shape will missing and the next shape will go down
+-= 4/3/2/1/0 =-
+Every shape has different color
+-= 4/3/2/1/0 =-
+Can random the shape
+
