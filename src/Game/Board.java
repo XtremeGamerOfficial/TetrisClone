@@ -24,7 +24,6 @@ public class Board extends JPanel implements ActionListener {
     Timer timer;
     boolean isFallingFinished = false;
     boolean isStarted = false;
-    boolean isPaused = false;
     int numLinesRemoved = 0;
     int curX = 0;
     int curY = 0;
@@ -64,9 +63,6 @@ public class Board extends JPanel implements ActionListener {
 
     public void start()
     {
-        if (isPaused)
-            return;
-
         isStarted = true;
         isFallingFinished = false;
         numLinesRemoved = 0;
@@ -74,22 +70,6 @@ public class Board extends JPanel implements ActionListener {
 
         newPiece();
         timer.start();
-    }
-
-    private void pause()
-    {
-        if (!isStarted)
-            return;
-
-        isPaused = !isPaused;
-        if (isPaused) {
-            timer.stop();
-            statusbar.setText("paused");
-        } else {
-            timer.start();
-            statusbar.setText(String.valueOf(numLinesRemoved));
-        }
-        repaint();
     }
 
     public void paint(Graphics g)
@@ -168,7 +148,7 @@ public class Board extends JPanel implements ActionListener {
             curPiece.setShape(Tetrominoes.NoShape);
             timer.stop();
             isStarted = false;
-            statusbar.setText("Game over!");
+            statusbar.setText("Game over! Lines: " + String.valueOf(numLinesRemoved));
         }
     }
 
@@ -271,14 +251,6 @@ public class Board extends JPanel implements ActionListener {
 
              int keycode = e.getKeyCode();
 
-//             if (keycode == 'p' || keycode == 'P') {
-//                 pause();
-//                 return;
-//             }
-
-             if (isPaused)
-                 return;
-
              switch (keycode) {
              	case KeyEvent.VK_LEFT:
              		tryMove(curPiece, curX - 1, curY);
@@ -295,13 +267,6 @@ public class Board extends JPanel implements ActionListener {
              	case KeyEvent.VK_SPACE:
              		tryMove(curPiece.rotateRight(), curX, curY);
              		break;
-             	
-//           	case KeyEvent.VK_DOWN:
-//                  tryMove(curPiece.rotateLeft(), curX, curY);
-//                  break;
-//             	case 'D':
-//             		oneLineDown();
-//             		break;
              }
 
          }
